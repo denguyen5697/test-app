@@ -49,7 +49,10 @@ export const getRules = (getValues?: UseFormGetValues<any>): Rules => ({
       value: 6,
       message: 'Độ dài từ 6 - 160 ký tự'
     },
-    validate: typeof getValues === 'function' ? (value) => value === getValues('password') || 'Nhập lại password chưa khớp' : undefined
+    validate:
+      typeof getValues === 'function'
+        ? (value) => value === getValues('password') || 'Nhập lại password chưa khớp'
+        : undefined
   }
 })
 
