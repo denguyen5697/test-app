@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { schema, Schema } from 'src/utils/rules'
-
-import Input from 'src/components/Input'
 import { useMutation } from '@tanstack/react-query'
+import { Link, useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+import { ErrorResponse } from 'src/types/utils.type'
+
+import { AppContext } from 'src/contexts/app.context'
+import { schema, Schema } from 'src/utils/rules'
 import { registerAccount } from 'src/apis/auth.api'
 import { omit } from 'lodash'
-interface Props {
-  children?: React.ReactNode
-}
+import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
+import Input from 'src/components/Input'
+import Button from 'src/components/Button'
 
 type FormData = Schema
 
-export default function Register({ children }: Props) {
+export default function Register() {
+  const { setIsAuthenticated } = useContext(AppContext)
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
-    watch,
-    getValues,
+    setError,
     formState: { errors }
   } = useForm<FormData>({
     resolver: yupResolver(schema)
@@ -32,8 +36,22 @@ export default function Register({ children }: Props) {
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
-      onSuccess: (data) => {
-        console.log({ data })
+      onSuccess: () => {
+        setIsAuthenticated(true)
+        navigate('/')
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError<ErrorResponse<Omit<FormData, 'confirm_password'>>>(error)) {
+          const formError = error.response?.data.data
+          if (formError) {
+            Object.keys(formError).forEach((key) => {
+              setError(key as keyof Omit<FormData, 'confirm_password'>, {
+                message: formError[key as keyof Omit<FormData, 'confirm_password'>],
+                type: 'Server'
+              })
+            })
+          }
+        }
       }
     })
   })
@@ -72,12 +90,13 @@ export default function Register({ children }: Props) {
                 autoComplete='on'
               />
               <div className='mt-2'>
-                <button
-                  type='submit'
-                  className='w-full bg-red-500 py-4 px-2 text-center text-sm uppercase text-white hover:bg-red-600'
+                <Button
+                  className='flex w-full items-center justify-center bg-red-500 py-4 px-2 text-sm uppercase text-white hover:bg-red-600'
+                  isLoading={registerAccountMutation.isLoading}
+                  disabled={registerAccountMutation.isLoading}
                 >
                   Đăng ký
-                </button>
+                </Button>
               </div>
               <div className='mt-8 flex items-center justify-center'>
                 <span className='text-gray-400'>Bạn đã có tài khoản?</span>
