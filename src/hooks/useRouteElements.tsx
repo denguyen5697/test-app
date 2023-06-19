@@ -1,3 +1,4 @@
+import path from 'src/constants/path'
 import { useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 import { AppContext } from 'src/contexts/app.context'
@@ -7,11 +8,10 @@ import Login from 'src/pages/Login'
 import ProductList from 'src/pages/ProductList'
 import Profile from 'src/pages/Profile'
 import Register from 'src/pages/Register'
-import path from 'src/constants/path'
+import ProductDetail from 'src/pages/ProductDetail'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
-  console.log('isAuthenticated :', isAuthenticated);
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
 }
 
@@ -58,6 +58,15 @@ export default function useRouteElements() {
           )
         }
       ]
+    },
+    {
+      path: path.productDetail,
+      index: true,
+      element: (
+        <MainLayout>
+          <ProductDetail />
+        </MainLayout>
+      )
     },
     {
       path: '',
