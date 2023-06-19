@@ -8,7 +8,7 @@ import { ErrorResponse } from 'src/types/utils.type'
 
 import { AppContext } from 'src/contexts/app.context'
 import { schema, Schema } from 'src/utils/rules'
-import { registerAccount } from 'src/apis/auth.api'
+import authApi from 'src/apis/auth.api'
 import { omit } from 'lodash'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import Input from 'src/components/Input'
@@ -17,7 +17,7 @@ import Button from 'src/components/Button'
 type FormData = Schema
 
 export default function Register() {
-  const { setIsAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
   const {
@@ -30,14 +30,15 @@ export default function Register() {
   })
 
   const registerAccountMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.registerAccount(body)
   })
 
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
-      onSuccess: () => {
+      onSuccess: (data: any) => {
         setIsAuthenticated(true)
+        setProfile(data.data.data.user)
         navigate('/')
       },
       onError: (error) => {

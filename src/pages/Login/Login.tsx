@@ -9,7 +9,7 @@ import { ErrorResponse } from 'src/types/utils.type'
 import { AppContext } from 'src/contexts/app.context'
 import { schema, Schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
-import { login } from 'src/apis/auth.api'
+import authApi from 'src/apis/auth.api'
 import Input from 'src/components/Input'
 import Button from 'src/components/Button'
 
@@ -17,7 +17,7 @@ type FormData = Omit<Schema, 'confirm_password'>
 const loginSchema = schema.omit(['confirm_password'])
 
 export default function Login() {
-  const { setIsAuthenticated } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
 
   const {
@@ -31,13 +31,13 @@ export default function Login() {
   })
 
   const loginMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password'>) => login(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.login(body)
   })
   const onSubmit = handleSubmit((data) => {
-    console.log('data', data)
     loginMutation.mutate(data, {
-      onSuccess: () => {
+      onSuccess: (data: any) => {
         setIsAuthenticated(true)
+        setProfile(data.data.data.user)
         navigate('/')
       },
       onError: (error) => {

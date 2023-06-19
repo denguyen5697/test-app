@@ -7,6 +7,7 @@ import Login from 'src/pages/Login'
 import ProductList from 'src/pages/ProductList'
 import Profile from 'src/pages/Profile'
 import Register from 'src/pages/Register'
+import path from 'src/constants/path'
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -27,7 +28,7 @@ export default function useRouteElements() {
       element: <RejectedRoute />,
       children: [
         {
-          path: 'login',
+          path: path.login,
           element: (
             <RegisterLayout>
               <Login />
@@ -35,7 +36,7 @@ export default function useRouteElements() {
           )
         },
         {
-          path: 'register',
+          path: path.register,
           element: (
             <RegisterLayout>
               <Register />
@@ -49,7 +50,7 @@ export default function useRouteElements() {
       element: <ProtectedRoute />,
       children: [
         {
-          path: 'profile',
+          path: path.profile,
           element: (
             <MainLayout>
               <Profile />
