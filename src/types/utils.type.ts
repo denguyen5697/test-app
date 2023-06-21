@@ -3,7 +3,7 @@ export interface ErrorResponse<Data> {
   data?: Data
 }
 
-export interface SuccessReponse<Data> {
+export interface SuccessResponse<Data> {
   message: string
   data: Data
 }
