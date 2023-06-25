@@ -1,9 +1,10 @@
-import axios, { AxiosError, HttpStatusCode, type AxiosInstance } from 'axios'
+import axios, { AxiosError, type AxiosInstance } from 'axios'
+import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 import { toast } from 'react-toastify'
-
 import { AuthResponse } from 'src/types/auth.type'
 import { clearLS, getAccessTokenFromLS, setAccessTokenToLS, setProfileToLS } from './auth'
 import path from 'src/constants/path'
+import config from 'src/constants/config'
 
 class Http {
   instance: AxiosInstance
@@ -11,17 +12,16 @@ class Http {
   constructor() {
     this.accessToken = getAccessTokenFromLS()
     this.instance = axios.create({
-      baseURL: 'https://api-ecom.duthanhduoc.com/',
-      timeout: 1000,
+      baseURL: config.baseUrl,
+      timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
       }
     })
-
-    this.instance.interceptors.request.use((config) => {
+    this.instance.interceptors.request.use(
+      (config) => {
         if (this.accessToken && config.headers) {
           config.headers.authorization = this.accessToken
-
           return config
         }
         return config
@@ -30,7 +30,7 @@ class Http {
         return Promise.reject(error)
       }
     )
-
+    // Add a response interceptor
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
@@ -46,12 +46,15 @@ class Http {
         return response
       },
       function (error: AxiosError) {
-        console.log('3123', error.config)
         if (error.response?.status !== HttpStatusCode.UnprocessableEntity) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const data: any | undefined = error.response?.data
-          const message = data.message || error.message
+          const message = data?.message || error.message
           toast.error(message)
+        }
+        if (error.response?.status === HttpStatusCode.Unauthorized) {
+          clearLS()
+          // window.location.reload()
         }
         return Promise.reject(error)
       }
