@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
@@ -61,7 +62,7 @@ export default function Profile() {
       avatar: '',
       date_of_birth: new Date(1990, 0, 1)
     },
-    resolver: yupResolver<any>(profileSchema)
+    resolver: yupResolver<yup.AnyObjectSchema>(profileSchema)
   })
 
   const avatar = watch('avatar')
