@@ -399,10 +399,10 @@
   dependencies:
     "@floating-ui/dom" "^1.2.1"
 
-"@hookform/resolvers@^3.1.0":
-  version "3.1.0"
-  resolved "https://npm.vexere.net/@hookform%2fresolvers/-/resolvers-3.1.0.tgz#ff83ef4aa6078173201da131ceea4c3583b67034"
-  integrity sha512-z0A8K+Nxq+f83Whm/ajlwE6VtQlp/yPHZnXw7XWVPIGm1Vx0QV8KThU3BpbBRfAZ7/dYqCKKBNnQh85BkmBKkA==
+"@hookform/resolvers@2.8.0":
+  version "2.8.0"
+  resolved "https://npm.vexere.net/@hookform%2fresolvers/-/resolvers-2.8.0.tgz#32e82b072ff71c71e62fb2901b129642a0c5897e"
+  integrity sha512-ALlr0Bg6zDHdRsdqkwfWGPMnIxP4hqMRPvFDHp7lWXQeA7rKykto3cWqQQh1s0PzX043RHwMB6OHVPMwFJqwxg==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"

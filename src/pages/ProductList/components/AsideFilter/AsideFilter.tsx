@@ -12,6 +12,8 @@ import RatingStars from '../RatingStars'
 import { omit } from 'lodash'
 import { QueryConfig } from 'src/hooks/useQueryConfig'
 import InputV2 from 'src/components/InputV2'
+import * as yup from 'yup'
+
 
 interface Props {
   queryConfig: QueryConfig
@@ -39,7 +41,7 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
       price_min: '',
       price_max: ''
     },
-    resolver: yupResolver(priceSchema)
+    resolver: yupResolver<yup.AnyObjectSchema>(priceSchema)
   })
   const navigate = useNavigate()
   const onSubmit = handleSubmit((data) => {

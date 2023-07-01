@@ -1,5 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
@@ -15,6 +14,7 @@ import { setProfileToLS } from 'src/utils/auth'
 import { userSchema, UserSchema } from 'src/utils/rules'
 import { getAvatarUrl, isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import DateSelect from 'src/components/DateSelect'
+import * as yup from 'yup'
 
 type FormData = Pick<UserSchema, 'name' | 'address' | 'phone' | 'date_of_birth' | 'avatar'>
 type FormDataError = Omit<FormData, 'date_of_birth'> & {
