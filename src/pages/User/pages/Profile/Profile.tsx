@@ -61,7 +61,7 @@ export default function Profile() {
       avatar: '',
       date_of_birth: new Date(1990, 0, 1)
     },
-    resolver: yupResolver(profileSchema)
+    resolver: yupResolver<any>(profileSchema)
   })
 
   const avatar = watch('avatar')
