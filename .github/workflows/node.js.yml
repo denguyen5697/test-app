@@ -21,6 +21,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - run: echo zxc
     - name: Deploy app
       uses: appleboy/ssh-action@master
       with:
