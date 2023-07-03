@@ -28,7 +28,8 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         port: ${{ secrets.PORT }}
-        key: ${{ secrets.SSHKEY }}
+        # key: ${{ secrets.SSHKEY }}
+        password: ${{ secrets.PASSWORD }}
         script: |
           "sleep 5s"
           "echo 123"
