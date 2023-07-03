@@ -1,7 +1,7 @@
 set -e
 echo "start ok"
 
-git pull origin master
+git pull origin main
 
 echo "pull ok"
 
