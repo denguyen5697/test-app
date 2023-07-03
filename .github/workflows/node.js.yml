@@ -30,5 +30,6 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSHKEY }}
         script: |
+          "sleep 5s"
           "echo 123"
           "cd /var/www/shopee-clone && ./.scripts/deploy.sh"
