@@ -24,8 +24,8 @@ jobs:
     - name: Deploy app
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
+        host: 103.130.215.72
+        username: root
+        port: 22
         key: ${{ secrets.SSHKEY }}
         script: "cd /var/www/shopee-clone && ./.scripts/deploy.sh"
