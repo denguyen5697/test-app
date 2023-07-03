@@ -16,3 +16,4 @@ yarn build
 
 echo "build ok"
 
+pm2 serve build/ 3000 --spa
