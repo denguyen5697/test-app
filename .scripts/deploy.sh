@@ -15,3 +15,4 @@ echo "install ok"
 yarn build
 
 echo "build ok"
+
