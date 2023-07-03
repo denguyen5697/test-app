@@ -30,3 +30,4 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         script: |
           "cd /var/www/shopee-clone && ./.scripts/deploy.sh"
+          "echo 123"
