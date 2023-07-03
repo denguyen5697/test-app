@@ -31,6 +31,6 @@ jobs:
         # key: ${{ secrets.SSHKEY }}
         password: dn97
         script: |
-          "sleep 5s"
-          "echo 123"
-          "cd /var/www/shopee-clone && ./.scripts/deploy.sh"
+          sleep 5s
+          echo 123
+          cd /var/www/shopee-clone && ./.scripts/deploy.sh
