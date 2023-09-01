@@ -1,6 +1,8 @@
-import { ProductListConfig } from 'src/types/product.type'
-import { omitBy, isUndefined } from 'lodash'
+import loOmitBy from 'lodash/omitBy'
+import isUndefined from 'lodash/isUndefined'
+
 import useQueryParams from './useQueryParams'
+import { ProductListConfig } from 'src/types/product.type'
 
 export type QueryConfig = {
   [key in keyof ProductListConfig]: string
@@ -8,7 +10,7 @@ export type QueryConfig = {
 
 export default function useQueryConfig() {
   const queryParams: QueryConfig = useQueryParams()
-  const queryConfig: QueryConfig = omitBy(
+  const queryConfig: QueryConfig = loOmitBy(
     {
       page: queryParams.page || '1',
       limit: queryParams.limit || '20',

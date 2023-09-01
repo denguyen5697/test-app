@@ -9,7 +9,7 @@ import { purchasesStatus } from 'src/constants/purchase'
 import { Purchase } from 'src/types/purchase.type'
 import { formatCurrency, generateNameId } from 'src/utils/utils'
 import { produce } from 'immer'
-import { keyBy } from 'lodash'
+import loKeyBy from 'lodash/keyBy'
 import { toast } from 'react-toastify'
 import { AppContext } from 'src/contexts/app.context'
 import noproduct from 'src/assets/images/no-product.png'
@@ -65,7 +65,7 @@ export default function Cart() {
 
   useEffect(() => {
     setExtendedPurchases((prev) => {
-      const extendedPurchasesObject = keyBy(prev, '_id')
+      const extendedPurchasesObject = loKeyBy(prev, '_id')
       return (
         purchasesInCart?.map((purchase) => {
           const isChoosenPurchaseFromLocation = choosenPurchaseIdFromLocation === purchase._id

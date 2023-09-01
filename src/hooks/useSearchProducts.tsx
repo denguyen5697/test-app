@@ -1,10 +1,11 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import { omit } from 'lodash'
-import { useForm } from 'react-hook-form'
-import useQueryConfig from './useQueryConfig'
-import { schema, Schema } from 'src/utils/rules'
 import { createSearchParams, useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import loOmit from 'lodash/omit'
+
 import path from 'src/constants/path'
+import { schema, Schema } from 'src/utils/rules'
+import useQueryConfig from './useQueryConfig'
 
 type FormData = Pick<Schema, 'name'>
 
@@ -23,7 +24,7 @@ export default function useSearchProducts() {
 
   const onSubmitSearch = handleSubmit((data) => {
     const config = queryConfig.order
-      ? omit(
+      ? loOmit(
           {
             ...queryConfig,
             name: data.name

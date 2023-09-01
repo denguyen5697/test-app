@@ -9,11 +9,10 @@ import { Schema, schema } from 'src/utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { NoUndefinedField } from 'src/types/utils.type'
 import RatingStars from '../RatingStars'
-import { omit } from 'lodash'
+import loOmit from 'lodash/omit'
 import { QueryConfig } from 'src/hooks/useQueryConfig'
 import InputV2 from 'src/components/InputV2'
 import * as yup from 'yup'
-
 
 interface Props {
   queryConfig: QueryConfig
@@ -58,7 +57,9 @@ export default function AsideFilter({ queryConfig, categories }: Props) {
   const handleRemoveAll = () => {
     navigate({
       pathname: path.home,
-      search: createSearchParams(omit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])).toString()
+      search: createSearchParams(
+        loOmit(queryConfig, ['price_min', 'price_max', 'rating_filter', 'category'])
+      ).toString()
     })
   }
 
