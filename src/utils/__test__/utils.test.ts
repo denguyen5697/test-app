@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest"
-import { isAxiosError, isAxiosUnprocessableEntityError } from "../utils"
-import { AxiosError } from "axios"
-import HttpStatusCode from "src/constants/httpStatusCode.enum"
+import { describe, it, expect } from 'vitest'
+import { isAxiosError, isAxiosUnprocessableEntityError } from '../utils'
+import { AxiosError } from 'axios'
+import HttpStatusCode from 'src/constants/httpStatusCode.enum'
 
 describe('isAxiosError', () => {
   it('test isAxios error', () => {

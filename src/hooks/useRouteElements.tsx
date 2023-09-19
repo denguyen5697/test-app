@@ -41,7 +41,7 @@ export default function useRouteElements() {
             <RegisterLayout>
               <Suspense
                 fallback={
-                  <div className='absolute right-1/2 bottom-1/2  translate-x-1/2 translate-y-1/2 transform '>
+                  <div className='absolute bottom-1/2 right-1/2  translate-x-1/2 translate-y-1/2 transform '>
                     <div className='border-orange-400 h-64 w-64  animate-spin rounded-full border-8 border-solid border-t-transparent'></div>
                   </div>
                 }

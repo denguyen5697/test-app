@@ -44,5 +44,5 @@ describe('clearLS', () => {
 
 it('should work', (ctx) => {
   // prints name of the test
-  console.log(123 ,ctx.task.name)
+  console.log(123, ctx.task.name)
 })
