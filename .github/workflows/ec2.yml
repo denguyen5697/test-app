@@ -39,6 +39,6 @@ jobs:
             node -v
             yarn install
             yarn build
-            rm -rf /var/www/html/shopee_clone/dist
+            rm -rf -f /var/www/html/shopee_clone/dist
             cp -R ../dist/ /var/www/html/shopee_clone/
             echo "copy done"
