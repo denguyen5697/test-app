@@ -38,4 +38,5 @@ jobs:
             git pull
             yarn install
             yarn build
-            sudo cp -R ../dist/ /var/www/html/shopee_clone/
+            cp -R ../dist/ /var/www/html/shopee_clone/
+            echo "copy done"
