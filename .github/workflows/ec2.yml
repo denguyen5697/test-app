@@ -31,9 +31,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "----Hitttt-----"
-            cd /ubuntu/shopee_clone/shopee_clone
-            git checkout dev
-            git pull
-            yarn install
-            yarn build
-            sudo cp -R ../dist/ /var/www/html/shopee_clone/
+            ls
+            # cd /ubuntu/shopee_clone/shopee_clone
+            # git checkout dev
+            # git pull
+            # yarn install
+            # yarn build
+            # sudo cp -R ../dist/ /var/www/html/shopee_clone/
