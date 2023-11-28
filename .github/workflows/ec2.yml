@@ -29,5 +29,4 @@ jobs:
           host: ${{ secrets.HOST_NAME }}
           username: ${{ secrets.USER_NAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            echo "123123"
+          script: echo "123123"
