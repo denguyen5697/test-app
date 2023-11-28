@@ -36,7 +36,7 @@ jobs:
             cd ./shopee-clone
             git checkout dev
             git pull
-            yarn install
-            yarn build
+            npm install
+            npm run build
             cp -R ../dist/ /var/www/html/shopee_clone/
             echo "copy doneee"
