@@ -27,6 +27,13 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_NAME }}
-          username: ${{ secrets.USER_NAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: echo "123123"
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.USER_NAME }}
+          script: |
+            echo "----Hitttt-----"
+            cd /ubuntu/shopee_clone/shopee_clone
+            git checkout dev
+            git pull
+            yarn install
+            yarn build
+            sudo cp -R ../dist/ /var/www/html/shopee_clone/
