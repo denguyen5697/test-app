@@ -32,8 +32,8 @@ jobs:
           script: |
             echo "----Hitttt-----"
             ls
-            cd /shopee_clone
-            cd /shopee-clone
+            cd ./shopee_clone
+            cd ./shopee-clone
             git checkout dev
             git pull
             yarn install
