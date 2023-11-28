@@ -36,7 +36,6 @@ jobs:
             cd ./shopee-clone
             git checkout dev
             git pull
-            nvm use 19
             yarn install
             yarn build
             cp -R ../dist/ /var/www/html/shopee_clone/
