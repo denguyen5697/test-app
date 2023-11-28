@@ -40,5 +40,6 @@ jobs:
             yarn install
             yarn build
             rm -rf -f /var/www/html/shopee_clone/dist
+            echo "remove done"
             cp -R ../dist/ /var/www/html/shopee_clone/
             echo "copy done"
