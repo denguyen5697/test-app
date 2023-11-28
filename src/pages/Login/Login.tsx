@@ -61,7 +61,7 @@ export default function Login() {
       <div className='container'>
         <div className='grid grid-cols-1 py-12 lg:grid-cols-5 lg:py-32 lg:pr-10'>
           <div className='lg:col-span-2 lg:col-start-4'>
-            <div className='text-3xl text-red-400'>Test CI EC2 AWS</div>
+            <div className='text-3xl text-white py-4'>Test CI EC2 AWS</div>
             <form className='rounded bg-white p-10 shadow-sm' onSubmit={onSubmit} noValidate>
               <div className='text-2xl'>Đăng nhập</div>
               <Input
