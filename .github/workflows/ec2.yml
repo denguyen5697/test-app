@@ -32,9 +32,9 @@ jobs:
           script: |
             echo "----Hitttt-----"
             ls
-            # cd /shopee_clone/shopee_clone
-            # git checkout dev
-            # git pull
-            # yarn install
-            # yarn build
-            # sudo cp -R ../dist/ /var/www/html/shopee_clone/
+            cd /shopee_clone/shopee_clone
+            git checkout dev
+            git pull
+            yarn install
+            yarn build
+            sudo cp -R ../dist/ /var/www/html/shopee_clone/
