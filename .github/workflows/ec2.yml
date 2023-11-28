@@ -1,34 +1,33 @@
-name: Deploy
+name: Push-to-EC2
 
+# Trigger deployment only on push to main branch
 on:
   push:
-    branches: [ dev ]
+    branches:
+      - dev
 
 jobs:
-  Deploy:
-    name: Deploy to EC2
+  deploy:
+    name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2 
-      - name: Build & Deploy
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
         env:
-            PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-            HOSTNAME: ${{secrets.HOST_NAME}}
-            USER_NAME: ${{secrets.USER_NAME}}
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_NAME }}
+          REMOTE_USER: ${{ secrets.USER_NAME }}
+          TARGET: ${{ secrets.TARGET }}
 
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-
-              # Now we have got the access of EC2 and we will start the deploy .
-              cd /home/ubuntu/shopee_clone &&
-              git checkout dev &&
-              git fetch --all &&
-              git reset --hard origin/dev &&
-              git pull origin dev &&
-              sudo yarn i &&
-              sudo yarn build &&
-              # sudo pm2 stop ./dist/index.js &&
-              # sudo pm2 start ./dist/index.js
-              '
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "123123"
