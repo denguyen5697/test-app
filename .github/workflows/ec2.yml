@@ -32,7 +32,7 @@ jobs:
           script: |
             echo "----Hitttt-----"
             ls
-            # cd /ubuntu/shopee_clone/shopee_clone
+            # cd /shopee_clone/shopee_clone
             # git checkout dev
             # git pull
             # yarn install
