@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to EC2 on master branch push
+    name: Deploy to EC2 on dev branch push
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +27,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_NAME }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.USER_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "----Hitttt-----"
             cd /ubuntu/shopee_clone/shopee_clone
