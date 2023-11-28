@@ -40,4 +40,4 @@ jobs:
             yarn install
             yarn build
             cp -R ../dist/ /var/www/html/shopee_clone/
-            echo "copy done"
+            echo "copy donee"
