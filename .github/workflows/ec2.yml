@@ -40,5 +40,5 @@ jobs:
             yarn build
             rm -rf -f /var/www/html/test-app/dist
             echo "remove done"
-            cp -R ../dist/ /var/www/html/test-app/
+            cp -R ../build/ /var/www/html/test-app/
             echo "copy done"
