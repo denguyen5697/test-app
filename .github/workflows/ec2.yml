@@ -32,14 +32,13 @@ jobs:
           script: |
             echo "----Hitttt-----"
             ls
-            cd ./shopee_clone
-            cd ./shopee-clone
+            cd ./test-app
             git checkout dev
             git pull
             node -v
             yarn install
             yarn build
-            rm -rf -f /var/www/html/shopee_clone/dist
+            rm -rf -f /var/www/html/test-app/dist
             echo "remove done"
-            cp -R ../dist/ /var/www/html/shopee_clone/
+            cp -R ../dist/ /var/www/html/test-app/
             echo "copy done"
