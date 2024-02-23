@@ -31,8 +31,8 @@ export default function ProductList() {
   return (
     <div className='bg-gray-200 py-6'>
       <Helmet>
-        <title>Trang chủ | Shopee Rep</title>
-        <meta name='description' content='Trang chủ dự án Shopee Rep' />
+        <title>Trang chủ | Test App</title>
+        <meta name='description' content='Trang chủ dự án Test App' />
       </Helmet>
       <div className='container'>
         {productsData && (

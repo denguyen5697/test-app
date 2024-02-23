@@ -1,20 +1,29 @@
-# Using node:16-alpine base image
-FROM node:18-alpine 
- 
-# Set /app as the default work directory
+# Use the official Node.js runtime as the base image
+FROM node:18-alpine as build
+
+# Set the working directory in the container
 WORKDIR /app
- 
-# copy package.json to the working directory for packages installation
-COPY package.json /app
- 
-# Install npm dependencies
+
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
 RUN yarn install
- 
-# Copy all the project files to the working directory
+
+# Copy the entire application code to the container
 COPY . .
 
-# Expose the port of your application to bind with the host port
-EXPOSE 3000
+# Build the React app for production
+RUN yarn build
 
-# run your app
-CMD ["yarn", "dev"]
+# Use Nginx as the production server
+FROM nginx:alpine
+
+# Copy the built React app to Nginx's web server directory
+COPY --from=build /build /usr/share/nginx/html
+
+# Expose port 80 for the Nginx server
+EXPOSE 80
+
+# Start Nginx when the container runs
+CMD ["nginx", "-g", "daemon off;"]
